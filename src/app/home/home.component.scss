@@ -1,0 +1,60 @@
+$v3-font-size: 48px;
+$v3-background-color: transparent;
+.btn.btn-sm.btn-success,
+.btn.btn-sm.btn-danger,
+.btn.btn-sm.btn-secondary{
+    font-size: $v3-font-size;
+}
+.container{
+    background-color: $v3-background-color;
+    // height: calc(100vh - 150px);
+}
+.name-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 8px;
+    border-radius: 6px;
+    &.success-border{
+        border: 2px solid green;
+        background-color: green;
+        .status,
+        .name{
+            color: white;
+            background-color: green;
+        }
+    }
+    &.danger-border{
+        border: 2px solid red;
+        background-color: red;
+        .status, 
+        .name{
+            color:white;
+            background-color: red;
+        }
+    }
+}
+.action-container{
+    font-size: $v3-font-size;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    background-color: $v3-background-color;
+    .action{
+        align-items: center;
+        width: 100%;
+        justify-content: space-evenly;
+        &.visible{
+            display: flex;
+        }
+        &.invisible{
+            display: none;
+        }
+    }
+
+}
+
+
+
+

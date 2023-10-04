@@ -1,0 +1,46 @@
+[
+    { 
+        "id":1,
+        "nome":"Mother Board",
+        "checked":"--",
+        "ologram":{
+            "primitive":"cube",
+            "position":{ "x":0.00491, "y":-0.0379, "z":-0.0294},
+            "rotation":{ "x":45, "y":0, "z":0},
+            "scale":{ "x":0.5, "y":0.5, "z":0.5}
+        }
+    },
+    { 
+        "id":2,
+        "nome":"Hard Disk",
+        "checked":"--",
+        "ologram":{
+            "primitive":"cube",
+            "position":{ "x":0.00491, "y":-0.0379, "z":-0.0294},
+            "rotation":{ "x":45, "y":45, "z":0},
+            "scale":{ "x":0.5, "y":0.5, "z":0.5}
+        }
+    },
+    { 
+        "id":3,
+        "nome":"RAM",
+        "checked":"--",
+        "ologram":{
+            "primitive":"cube",
+            "position":{ "x":0.00491, "y":-0.0379, "z":-0.0294},
+            "rotation":{ "x":0, "y":45, "z":45},
+            "scale":{ "x":0.5, "y":0.5, "z":0.5}
+        }
+    },
+    { 
+        "id":4,
+        "nome":"USB",
+        "checked":"--",
+        "ologram":{
+            "primitive":"cube",
+            "position":{ "x":0.00491, "y":-0.0379, "z":-0.0294},
+            "rotation":{ "x":36, "y":45, "z":45},
+            "scale":{ "x":0.5, "y":0.5, "z":0.5}
+        }
+    }
+]

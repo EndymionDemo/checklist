@@ -1,0 +1,24 @@
+
+<div class="container">
+
+</div>
+<div class="action-container">
+    <ng-container *ngFor="let compo of data">
+        <div class="action" [ngClass]="{'visible':compo.visible, 'invisible':!compo.visible}">
+            <button class="btn btn-sm btn-secondary" (click)="back(compo.id)">Indietro</button>
+            <div class="name-container" [ngClass]="{'success-border':compo.checked==true, 'danger-border':compo.checked==false}">
+                <div class="name">
+                        {{ compo.nome }}
+                </div>
+                <div class="status">
+                    <i class="bi" [ngClass]="{'bi-check-lg':compo.checked == true,
+                                                'bi-x-lg':compo.checked == false}"></i>                              
+            </div>
+            </div>
+
+            <button class="btn btn-sm btn-success" (click)="check(compo.id)">Check</button>
+            <button class="btn btn-sm btn-danger" (click)="miss(compo.id)">Missing</button>
+        </div>
+    </ng-container>
+</div>
+
