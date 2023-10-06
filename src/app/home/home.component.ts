@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HomeService } from './home.service';
 import { BehaviorSubject, Subscription, map, skip } from 'rxjs';
-import  WebApi  from '../../vendor/endymion';
+import  {WebApi}  from '../../vendor/endymion';
 
 
 @Component({
@@ -20,6 +20,17 @@ export class HomeComponent {
   statusS = new BehaviorSubject<{id:number, status:any}>({} as {id:number, status:any});
   status$ = this.statusS.asObservable();
   subs:Subscription[] = [];
+  constructor(private apiService:HomeService){
+    if(!(window as any).vuplex){
+      (window as any).vuplex = {
+        postMessage:()=>{},
+        addEventListener:()=>{}
+      };
+    }
+    this.endy = new WebApi();
+    this.message.push(this.endy);
+    this.subs.push(this.lista$.subscribe(r=>r));
+  }
 
   statusSetted$ = this.status$.pipe(
     skip(1),
@@ -76,20 +87,6 @@ export class HomeComponent {
       this.stepS.next(this.currentStep);
     })
   )
-
-  constructor(private apiService:HomeService){
-    if(!(window as any).vuplex){
-      (window as any).vuplex = {
-        postMessage:()=>{},
-        addEventListener:()=>{}
-      };
-    }
-    this.endy = new WebApi();
-    this.subs.push(this.lista$.subscribe(r=>r));
-  }
-  ngOnInit(){
-
-  }
 
   check = (compoId:number)=>{
     this.statusS.next({id:compoId, status:true});
