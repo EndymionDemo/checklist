@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { HomeService } from './home.service';
 import { BehaviorSubject, Subscription, map, skip } from 'rxjs';
-import * as EndymionWebApi from '../../vendor/endymion-web-api';
+import  WebApi  from '../../vendor/endymion';
+
 
 @Component({
   selector: 'app-home',
@@ -11,8 +12,9 @@ import * as EndymionWebApi from '../../vendor/endymion-web-api';
 export class HomeComponent {
   endy:any;
   data:any[] = [];
+  message:any[] =[];
   currentStep = 1;
-  treDId:number = -1;
+  currentOlogramId:number = -1;
   stepS = new BehaviorSubject(-1);
   step$ = this.stepS.asObservable();
   statusS = new BehaviorSubject<{id:number, status:any}>({} as {id:number, status:any});
@@ -21,10 +23,15 @@ export class HomeComponent {
 
   statusSetted$ = this.status$.pipe(
     skip(1),
-    map((status: {id:number, status:any})=>{
+    map((el: {id:number, status:any})=>{
       this.data.forEach(e=>{
-        e.checked = (e.id == status.id)?status.status : e.checked;
+        if(e.id == el.id){
+          e.checked = el.status;
+          e.ologram.color = (el.status)? { r:29, g:242, b:40, a:0.4 } : { r:242, g:29, b:29, a:0.4 };
+        }
       });
+
+      console.log('data ', this.data);
       return this.data;
     })
   ).subscribe(r=>r);
@@ -33,18 +40,21 @@ export class HomeComponent {
     skip(1),
     map((step)=>{
       this.data.forEach(e=>{
-        ;
         e.visible = (e.id == step);
 
         if(e.visible){
-          if(this.treDId != -1){
-            this.endy.destroyObject(this.treDId);
+          if(this.currentOlogramId != -1){
+            this.endy.destroyObject(this.currentOlogramId);
           }
-         this.treDId = this.endy.createObject(e.ologram.primitive, 
-                                              e.ologram.position, 
-                                              e.ologram.rotation, 
-                                              e.ologram.scale);
-        }
+         this.currentOlogramId = e.id;
+         this.endy.createObject(e.id, 
+                                e.ologram.primitive, 
+                                e.ologram.position, 
+                                e.ologram.rotation, 
+                                e.ologram.scale);
+          this.endy.setColor(e.id, e.ologram.color);
+
+         }
       })
       return step;
     })
@@ -74,7 +84,7 @@ export class HomeComponent {
         addEventListener:()=>{}
       };
     }
-    this.endy = new EndymionWebApi.EndymionWebApi();
+    this.endy = new WebApi();
     this.subs.push(this.lista$.subscribe(r=>r));
   }
   ngOnInit(){
@@ -98,6 +108,12 @@ export class HomeComponent {
   back(compoId:number){
     if(this.currentStep >1){
         this.currentStep--;
+        this.stepS.next(this.currentStep);
+    }
+  }
+  forward(compoId:number){
+    if(this.currentStep < this.data.length){
+        this.currentStep++;
         this.stepS.next(this.currentStep);
     }
   }

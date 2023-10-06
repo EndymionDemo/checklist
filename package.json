@@ -1,6 +1,7 @@
 {
   "name": "test-checklist",
   "version": "0.0.0",
+  "typings": "src/vendor/index.d.ts",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
