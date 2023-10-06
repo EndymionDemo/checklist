@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HomeService } from './home.service';
-import { BehaviorSubject, Subscription, from, map, mergeMap, of, skip } from 'rxjs';
+import { BehaviorSubject, Subscription, from, map, mergeMap, of, skip, tap } from 'rxjs';
 import  {WebApi}  from '../../vendor/endymion';
 
 
@@ -74,6 +74,7 @@ export class HomeComponent {
 lista$ = this.dataRefresher$.pipe(
   map(()=> this.message.push('refreshing data')),
     mergeMap(()=>this.apiService.lista$),
+    tap((lista)=>console.log('data received', lista)),
     map((lista)=>{
       var result:any = [];
       lista.forEach((e:any)=>{
