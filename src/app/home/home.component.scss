@@ -1,4 +1,4 @@
-$v3-font-size: 48px;
+$v3-font-size: 120px;
 $v3-background-color: transparent;
 .btn.btn-sm.btn-success,
 .btn.btn-sm.btn-danger,
@@ -7,13 +7,13 @@ $v3-background-color: transparent;
 }
 .container{
     background-color: $v3-background-color;
-    height: calc(100vh - 250px);
+    height: calc(100vh - 600px);
 }
 .action-container{
     display: flex;
     font-size: $v3-font-size;
     width: 100%;
-    max-width: 500px;
+    max-width: 1300px;
     height: 100%;
     padding: 25px;
     border: 1px solid gray;
