@@ -10,8 +10,9 @@ $v3-background-color: transparent;
     height: 100vh;
     width: 100vw;
     display: flex;
-    justify-content: start;
-    align-items: end;
+    justify-content: flex-start;
+    align-items: flex-end;
+    padding-bottom: 300px;
     .action-container{
         display: flex;
         font-size: $v3-font-size;

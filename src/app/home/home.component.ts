@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HomeService } from './home.service';
-import { BehaviorSubject, Subscription, map, skip } from 'rxjs';
+import { BehaviorSubject, Subscription, from, map, mergeMap, of, skip } from 'rxjs';
 import  {WebApi}  from '../../vendor/endymion';
 
 
@@ -19,6 +19,8 @@ export class HomeComponent {
   step$ = this.stepS.asObservable();
   statusS = new BehaviorSubject<{id:number, status:any}>({} as {id:number, status:any});
   status$ = this.statusS.asObservable();
+  dataRefresherS = new BehaviorSubject(0);
+  dataRefresher$ = this.dataRefresherS.asObservable();
   subs:Subscription[] = [];
   constructor(private apiService:HomeService){
     if(!(window as any).vuplex){
@@ -28,7 +30,7 @@ export class HomeComponent {
       };
     }
     this.endy = new WebApi();
-    this.message.push(this.endy);
+    this.dataRefresherS.next(0);
     this.subs.push(this.lista$.subscribe(r=>r));
   }
 
@@ -41,8 +43,6 @@ export class HomeComponent {
           e.ologram.color = (el.status)? { r:29, g:242, b:40, a:0.4 } : { r:242, g:29, b:29, a:0.4 };
         }
       });
-
-      console.log('data ', this.data);
       return this.data;
     })
   ).subscribe(r=>r);
@@ -71,10 +71,12 @@ export class HomeComponent {
     })
   ).subscribe(r=>r);
 
-  lista$ = this.apiService.lista$.pipe(
+lista$ = this.dataRefresher$.pipe(
+  map(()=> this.message.push('refreshing data')),
+    mergeMap(()=>this.apiService.lista$),
     map((lista)=>{
       var result:any = [];
-      lista.forEach(e=>{
+      lista.forEach((e:any)=>{
         result.push({
           ...e,
           visible:false
@@ -84,6 +86,8 @@ export class HomeComponent {
     }),
     map((result:any)=>{
       this.data = result;
+     this.message.push('data refreshed');
+      this.message.push(this.data);
       this.stepS.next(this.currentStep);
     })
   )
