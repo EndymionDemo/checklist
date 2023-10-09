@@ -14,7 +14,7 @@ export class HomeComponent {
   data:any[] = [];
   message:any[] =[];
   currentStep = 1;
-  currentOlogramId:number = -1;
+  currentObjectId:number = -1;
   stepS = new BehaviorSubject(-1);
   step$ = this.stepS.asObservable();
   statusS = new BehaviorSubject<{id:number, status:any}>({} as {id:number, status:any});
@@ -40,7 +40,9 @@ export class HomeComponent {
       this.data.forEach(e=>{
         if(e.id == el.id){
           e.checked = el.status;
-          e.ologram.color = (el.status)? { r:29, g:242, b:40, a:0.4 } : { r:242, g:29, b:29, a:0.4 };
+          e.olograms.forEach((ologram:any)=>{
+            ologram.color =  (el.status)? { r:29, g:242, b:40, a:0.4 } : { r:242, g:29, b:29, a:0.4 };
+          });
         }
       });
       return this.data;
@@ -54,16 +56,22 @@ export class HomeComponent {
         e.visible = (e.id == step);
 
         if(e.visible){
-          if(this.currentOlogramId != -1){
-            this.endy.destroyObject(this.currentOlogramId);
+          if(this.currentObjectId != -1){
+            e.olograms.forEach((ologram:any)=>{
+              this.endy.destroyObject(ologram.ologramId);
+            });
           }
-         this.currentOlogramId = e.id;
-         this.endy.createObject(e.id, 
-                                e.ologram.primitive, 
-                                e.ologram.position, 
-                                e.ologram.rotation, 
-                                e.ologram.scale);
-          this.endy.setColor(e.id, e.ologram.color);
+         this.currentObjectId = e.id;
+         e.olograms.forEach((ologram:any)=>{
+              this.endy.createObject(ologram.ologramId, 
+                                      ologram.primitive, 
+                                      ologram.position, 
+                                      ologram.rotation, 
+                                      ologram.scale);
+
+              this.endy.setColor(ologram.ologramId, ologram.color);
+         });
+
 
          }
       })

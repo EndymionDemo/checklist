@@ -3,48 +3,90 @@
         "id":1,
         "nome":"Mother Board",
         "checked":"--",
-        "ologram":{
-            "primitive":"cube",
-            "position":{ "x":0.00491, "y":-0.0379, "z":-0.0294},
-            "rotation":{ "x":45, "y":0, "z":0},
-            "scale":{ "x":0.5, "y":0.5, "z":0.5},
-            "color":{ "r":8, "g":21, "b":224, "a":0.6}
-        }
+        "olograms":[
+            {
+                "ologramId":"1-1",
+                "primitive":"cube",
+                "position":{ "x":0.00491, "y":-0.0379, "z":-0.0294},
+                "rotation":{ "x":45, "y":0, "z":0},
+                "scale":{ "x":0.5, "y":0.5, "z":0.5},
+                "color":{ "r":8, "g":21, "b":224, "a":0.6}
+            },
+            {
+                "ologramId":"1-2",
+                "primitive":"sphere",
+                "position":{ "x":0.00491, "y":-0.0379, "z":-0.0294},
+                "rotation":{ "x":45, "y":0, "z":0},
+                "scale":{ "x":0.5, "y":0.5, "z":0.5},
+                "color":{ "r":8, "g":21, "b":224, "a":0.6}
+            }
+
+        ]
     },
     { 
         "id":2,
         "nome":"Hard Disk",
         "checked":"--",
-        "ologram":{
+        "olograms":[
+        {
+            "ologramId":"2-1",
             "primitive":"cube",
             "position":{ "x":0.00491, "y":-0.0379, "z":-0.0294},
             "rotation":{ "x":45, "y":45, "z":0},
             "scale":{ "x":0.5, "y":0.5, "z":0.5},
             "color":{ "r":8, "g":21, "b":224, "a":0.6}
-        }
+        },
+        {
+            "ologramId":"2-2",
+            "primitive":"sphere",
+            "position":{ "x":0.00491, "y":-0.0379, "z":-0.0294},
+            "rotation":{ "x":45, "y":0, "z":0},
+            "scale":{ "x":0.5, "y":0.5, "z":0.5},
+            "color":{ "r":8, "g":21, "b":224, "a":0.6}
+        }]
     },
     { 
         "id":3,
         "nome":"RAM",
         "checked":"--",
-        "ologram":{
+        "olograms":[
+        {
+            "ologramId":"3-1",
             "primitive":"cube",
             "position":{ "x":0.00491, "y":-0.0379, "z":-0.0294},
             "rotation":{ "x":0, "y":45, "z":45},
             "scale":{ "x":0.5, "y":0.5, "z":0.5},
             "color":{ "r":8, "g":21, "b":224, "a":0.6}
-        }
+        },
+        {
+            "ologramId":"3-2",
+            "primitive":"sphere",
+            "position":{ "x":0.00491, "y":-0.0379, "z":-0.0294},
+            "rotation":{ "x":45, "y":0, "z":0},
+            "scale":{ "x":0.5, "y":0.5, "z":0.5},
+            "color":{ "r":8, "g":21, "b":224, "a":0.6}
+        }]
     },
     { 
         "id":4,
         "nome":"USB",
         "checked":"--",
-        "ologram":{
+        "olograms":[
+        {
+            "ologramId":"4-1",
             "primitive":"cube",
             "position":{ "x":0.00491, "y":-0.0379, "z":-0.0294},
             "rotation":{ "x":36, "y":45, "z":45},
             "scale":{ "x":0.5, "y":0.5, "z":0.5},
             "color":{ "r":8, "g":21, "b":224, "a":0.6}
-        }
+        },
+        {
+            "ologramId":"4-2",
+            "primitive":"sphere",
+            "position":{ "x":0.00491, "y":-0.0379, "z":-0.0294},
+            "rotation":{ "x":45, "y":0, "z":0},
+            "scale":{ "x":0.5, "y":0.5, "z":0.5},
+            "color":{ "r":8, "g":21, "b":224, "a":0.6}
+        }]
     }
 ]
