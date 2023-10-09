@@ -28,7 +28,8 @@
             "assets": [
               "src/favicon.ico",
               "src/checklist.arsd",
-              "src/data"
+              "src/data",
+              "src/assets"
             ],
             "styles": [
               "src/styles.scss"

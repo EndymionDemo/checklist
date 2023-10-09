@@ -3,30 +3,95 @@
         "id":1,
         "nome":"Mother Board",
         "checked":"--",
+        "image":"https://placehold.co/1600x400",
         "olograms":[
             {
-                "ologramId":101,
+                "ologramId":110,
                 "primitive":"cube",
-                "position":{ "x":0.00491, "y":-0.0379, "z":-0.0294},
-                "rotation":{ "x":45, "y":0, "z":0},
-                "scale":{ "x":0.5, "y":0.5, "z":0.5},
-                "color":{ "r":8, "g":21, "b":224, "a":0.6}
+                "position":{ "x":0.8, "y":-1.2, "z":1.05},
+                "rotation":{ "x":0, "y":0, "z":0},
+                "scale":{ "x":4.5, "y":5, "z":2.4},
+                "color":{ "r":128, "g":128, "b":128, "a":0.3}
             },
             {
                 "ologramId":102,
-                "primitive":"sphere",
-                "position":{ "x":0.00491, "y":-0.0379, "z":-0.0294},
-                "rotation":{ "x":45, "y":0, "z":0},
-                "scale":{ "x":0.5, "y":0.5, "z":0.5},
+                "primitive":"cube",
+                "position":{ "x":0.1, "y":-0.77, "z":2},
+                "rotation":{ "x":0, "y":0, "z":0},
+                "scale":{ "x":3.11, "y":3.81, "z":0.1},
                 "color":{ "r":8, "g":21, "b":224, "a":0.6}
+            },
+            {
+                "ologramId":103,
+                "primitive":"cube",
+                "position":{ "x":0.44, "y":-1.64, "z":1.2},
+                "rotation":{ "x":0, "y":0, "z":0},
+                "scale":{ "x":3.78, "y":0.69, "z":1.23},
+                "color":{ "r":128, "g":200, "b":128, "a":0.35}
+            },
+            {
+                "ologramId":104,
+                "primitive":"cube",
+                "position":{ "x":-0.72, "y":-2.05, "z":1.2},
+                "rotation":{ "x":0, "y":0, "z":0},
+                "scale":{ "x":1.35, "y":0.13, "z":1.23},
+                "color":{ "r":128, "g":200, "b":128, "a":0.35}
+            },
+            {
+                "ologramId":105,
+                "primitive":"cube",
+                "position":{ "x":0.78, "y":-0.11, "z":1.2},
+                "rotation":{ "x":0, "y":0, "z":0},
+                "scale":{ "x":0.41, "y":1.3, "z":0.57},
+                "color":{ "r":128, "g":200, "b":128, "a":0.35}
+            },
+            {
+                "ologramId":106,
+                "primitive":"cube",
+                "position":{ "x":0.24, "y":-0.11, "z":1.2},
+                "rotation":{ "x":0, "y":0, "z":0},
+                "scale":{ "x":0.29, "y":1.47, "z":1.47},
+                "color":{ "r":128, "g":200, "b":128, "a":0.35}
+            },
+            {
+                "ologramId":107,
+                "primitive":"cube",
+                "position":{ "x":-1.34, "y":-0.11, "z":1.2},
+                "rotation":{ "x":0, "y":0, "z":0},
+                "scale":{ "x":0.29, "y":1.47, "z":1.47},
+                "color":{ "r":128, "g":200, "b":128, "a":0.35}
+            },
+            {
+                "ologramId":108,
+                "primitive":"cube",
+                "position":{ "x":-0.04, "y":-0.97, "z":1.89},
+                "rotation":{ "x":0, "y":0, "z":0},
+                "scale":{ "x":1.19, "y":0.24, "z":0.06},
+                "color":{ "r":128, "g":200, "b":128, "a":0.35}
+            },
+            {
+                "ologramId":109,
+                "primitive":"cube",
+                "position":{ "x":2.88, "y":-0.11, "z":1.2},
+                "rotation":{ "x":0, "y":0, "z":0},
+                "scale":{ "x":0.29, "y":1.47, "z":1.47},
+                "color":{ "r":128, "g":200, "b":128, "a":0.35}
+            },
+            {
+                "ologramId":101,
+                "primitive":"cube",
+                "position":{ "x":1.2, "y":-3.2, "z":1.2},
+                "rotation":{ "x":0, "y":0, "z":0},
+                "scale":{ "x":4.5, "y":0.89, "z":2.3},
+                "color":{ "r":128, "g":200, "b":128, "a":0.35}
             }
-
         ]
     },
     { 
         "id":2,
         "nome":"Hard Disk",
         "checked":"--",
+        "image":"https://placehold.co/800x800",
         "olograms":[
         {
             "ologramId":201,
@@ -49,6 +114,7 @@
         "id":3,
         "nome":"RAM",
         "checked":"--",
+        "image":"https://placehold.co/500x500",
         "olograms":[
         {
             "ologramId":301,
@@ -71,6 +137,7 @@
         "id":4,
         "nome":"USB",
         "checked":"--",
+        "image":"https://placehold.co/1200x200",
         "olograms":[
         {
             "ologramId":401,
