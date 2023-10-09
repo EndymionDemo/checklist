@@ -5,7 +5,7 @@
         "checked":"--",
         "olograms":[
             {
-                "ologramId":"1-1",
+                "ologramId":101,
                 "primitive":"cube",
                 "position":{ "x":0.00491, "y":-0.0379, "z":-0.0294},
                 "rotation":{ "x":45, "y":0, "z":0},
@@ -13,7 +13,7 @@
                 "color":{ "r":8, "g":21, "b":224, "a":0.6}
             },
             {
-                "ologramId":"1-2",
+                "ologramId":102,
                 "primitive":"sphere",
                 "position":{ "x":0.00491, "y":-0.0379, "z":-0.0294},
                 "rotation":{ "x":45, "y":0, "z":0},
@@ -29,7 +29,7 @@
         "checked":"--",
         "olograms":[
         {
-            "ologramId":"2-1",
+            "ologramId":201,
             "primitive":"cube",
             "position":{ "x":0.00491, "y":-0.0379, "z":-0.0294},
             "rotation":{ "x":45, "y":45, "z":0},
@@ -37,7 +37,7 @@
             "color":{ "r":8, "g":21, "b":224, "a":0.6}
         },
         {
-            "ologramId":"2-2",
+            "ologramId":202,
             "primitive":"sphere",
             "position":{ "x":0.00491, "y":-0.0379, "z":-0.0294},
             "rotation":{ "x":45, "y":0, "z":0},
@@ -51,7 +51,7 @@
         "checked":"--",
         "olograms":[
         {
-            "ologramId":"3-1",
+            "ologramId":301,
             "primitive":"cube",
             "position":{ "x":0.00491, "y":-0.0379, "z":-0.0294},
             "rotation":{ "x":0, "y":45, "z":45},
@@ -59,7 +59,7 @@
             "color":{ "r":8, "g":21, "b":224, "a":0.6}
         },
         {
-            "ologramId":"3-2",
+            "ologramId":302,
             "primitive":"sphere",
             "position":{ "x":0.00491, "y":-0.0379, "z":-0.0294},
             "rotation":{ "x":45, "y":0, "z":0},
@@ -73,7 +73,7 @@
         "checked":"--",
         "olograms":[
         {
-            "ologramId":"4-1",
+            "ologramId":401,
             "primitive":"cube",
             "position":{ "x":0.00491, "y":-0.0379, "z":-0.0294},
             "rotation":{ "x":36, "y":45, "z":45},
@@ -81,7 +81,7 @@
             "color":{ "r":8, "g":21, "b":224, "a":0.6}
         },
         {
-            "ologramId":"4-2",
+            "ologramId":402,
             "primitive":"sphere",
             "position":{ "x":0.00491, "y":-0.0379, "z":-0.0294},
             "rotation":{ "x":45, "y":0, "z":0},

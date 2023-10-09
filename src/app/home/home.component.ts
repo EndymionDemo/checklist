@@ -14,7 +14,9 @@ export class HomeComponent {
   data:any[] = [];
   message:any[] =[];
   currentStep = 1;
-  currentObjectId:number = -1;
+  // currentObjectId:number = -1;
+  // currentObjectArrayLength:number = 0;
+  ologramIdWillBeDeleted:number[] = [];
   stepS = new BehaviorSubject(-1);
   step$ = this.stepS.asObservable();
   statusS = new BehaviorSubject<{id:number, status:any}>({} as {id:number, status:any});
@@ -53,15 +55,15 @@ export class HomeComponent {
     skip(1),
     map((step)=>{
       this.data.forEach(e=>{
-        e.visible = (e.id == step);
 
+        e.visible = (e.id == step);
         if(e.visible){
-          if(this.currentObjectId != -1){
-            e.olograms.forEach((ologram:any)=>{
-              this.endy.destroyObject(ologram.ologramId);
+          if(this.ologramIdWillBeDeleted.length > 0){
+            this.ologramIdWillBeDeleted.forEach((ologramId:any)=>{
+              this.endy.destroyObject(ologramId);
             });
+            this.ologramIdWillBeDeleted = [];
           }
-         this.currentObjectId = e.id;
          e.olograms.forEach((ologram:any)=>{
               this.endy.createObject(ologram.ologramId, 
                                       ologram.primitive, 
@@ -70,9 +72,8 @@ export class HomeComponent {
                                       ologram.scale);
 
               this.endy.setColor(ologram.ologramId, ologram.color);
+              this.ologramIdWillBeDeleted.push(ologram.ologramId);
          });
-
-
          }
       })
       return step;
@@ -80,7 +81,6 @@ export class HomeComponent {
   ).subscribe(r=>r);
 
 lista$ = this.dataRefresher$.pipe(
-  map(()=> this.message.push('refreshing data')),
     mergeMap(()=>this.apiService.lista$),
     tap((lista)=>console.log('data received', lista)),
     map((lista)=>{
@@ -95,8 +95,6 @@ lista$ = this.dataRefresher$.pipe(
     }),
     map((result:any)=>{
       this.data = result;
-     this.message.push('data refreshed');
-      this.message.push(this.data);
       this.stepS.next(this.currentStep);
     })
   )

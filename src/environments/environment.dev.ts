@@ -1,3 +1,4 @@
 export const environment = {
-    apiUrl: 'https://test.endymion.tech'
+    production: false,
+    apiUrl: 'http://localhost:8000'
 }
