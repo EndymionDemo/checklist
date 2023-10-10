@@ -20,6 +20,10 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
+    "typeRoots": [
+      "src/vendor/endymion.d.ts",
+      "src/vendor/endymion.types.d.ts"
+    ],
     "useDefineForClassFields": false,
     "lib": [
       "ES2022",

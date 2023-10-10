@@ -14,8 +14,6 @@ export class HomeComponent {
   data:any[] = [];
   message:any[] =[];
   currentStep = 1;
-  // currentObjectId:number = -1;
-  // currentObjectArrayLength:number = 0;
   ologramIdWillBeDeleted:number[] = [];
   stepS = new BehaviorSubject(-1);
   step$ = this.stepS.asObservable();
