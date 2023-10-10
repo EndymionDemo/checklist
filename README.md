@@ -47,7 +47,7 @@ Id property must be unique, entity will rendered on id order.
 In ologram property are stored parameter for entity generation.     
 Ever this file is modified you have to reload application with browser refresh.
 
-For image path, load images in assets/images/folder and link it with path: "../assets/images/magename.png"      
+For image path, load images in assets/images/folder and link it with path: "../assets/images/imagename.png"      
 supported extension for image: all
 
 WARNING
