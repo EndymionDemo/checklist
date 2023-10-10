@@ -43,7 +43,9 @@ export class HomeComponent {
         if(e.id == el.id){
           e.checked = el.status;
           e.olograms.forEach((ologram:any)=>{
-            ologram.color =  (el.status)? { r:29, g:242, b:40, a:0.4 } : { r:242, g:29, b:29, a:0.4 };
+            if(ologram.colourable){
+              ologram.color =  (el.status)? { r:29, g:242, b:40, a:0.4 } : { r:242, g:29, b:29, a:0.4 };
+            }
           });
         }
       });
