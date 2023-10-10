@@ -67,14 +67,38 @@ export class HomeComponent {
             this.ologramIdWillBeDeleted = [];
           }
          e.olograms.forEach((ologram:any)=>{
-              this.endy.createObject(ologram.ologramId, 
-                                      ologram.primitive, 
-                                      ologram.position, 
-                                      ologram.rotation, 
-                                      ologram.scale);
+          let actions = [];
+          actions.push(
+            this.endy.createAction('create-primitive', 
+            {
+              id: ologram.ologramId,
+              primitive: ologram.primitive,
+              position: ologram.position,
+              rotation: ologram.rotation,
+              scale: ologram.scale
+            })
+          );
+          // actions.push(
+          //   this.endy.createAction('set-color',
+          //                         {
+          //                           id: ologram.ologramId,
+          //                           color: {
+          //                             r: ologram.color.r/255,
+          //                             g: ologram.color.g/255,
+          //                             b: ologram.color.b/255,
+          //                             a: ologram.color.a
+          //                           }
+          //                         })
+          // );
+          // this.endy.createObject(ologram.ologramId, 
+          //                             ologram.primitive, 
+          //                             ologram.position, 
+          //                             ologram.rotation, 
+          //                             ologram.scale);
 
-              this.endy.setColor(ologram.ologramId, ologram.color);
+          //     this.endy.setColor(ologram.ologramId, ologram.color);
               this.ologramIdWillBeDeleted.push(ologram.ologramId);
+              this.endy.sendActions(actions);
          });
          }
       })
