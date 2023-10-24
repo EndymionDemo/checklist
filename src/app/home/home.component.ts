@@ -24,6 +24,7 @@ export class HomeComponent {
   dataRefresherS = new BehaviorSubject(0);
   dataRefresher$ = this.dataRefresherS.asObservable();
   subs:Subscription[] = [];
+  
   constructor(private apiService:HomeService){
     if(!(window as any).vuplex){
       (window as any).vuplex = {
