@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://test.endymion.tech'
+    apiUrl: 'https://check-list.endymion.tech'
 }
