@@ -1,6 +1,7 @@
 # Checklist
 
-AR test Checklist
+AR test Checklist.    
+Verify that all the components of the desktop computer are present with the help of augmented reality.    
 # Clone Repository
 
 Clone this repository       
