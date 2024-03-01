@@ -1,0 +1,37 @@
+import { EndymionCore } from './endymion-core-v2';
+import { EnCube } from '../entities/en-cube';
+import { EnSphere } from '../entities/en-sphere';
+import { EnCylinder } from '../entities/en-cylinder';
+import { EnAsset } from '../entities/en-asset';
+import { EnCapsule } from '../entities/en-capsule';
+import { EnPlane } from '../entities/en-plane';
+import { EnQuad } from '../entities/en-quad';
+import { EnWebview } from '../entities/en-webview';
+import { EnShapeLine } from '../entities/en-shape-line';
+import { MasterPage } from './master-page';
+import { MessageIncoming } from './endymion-v2.types';
+export declare class En {
+    private commInterface;
+    private w;
+    core: EndymionCore;
+    private message;
+    private actionResult;
+    private trackImage;
+    message$: import("rxjs").Observable<MessageIncoming>;
+    actionResult$: import("rxjs").Observable<MessageIncoming>;
+    trackImage$: import("rxjs").Observable<MessageIncoming>;
+    constructor(commInterface?: string, w?: Window);
+    enableDebug: () => void;
+    disableDebug: () => void;
+    asset: () => EnAsset;
+    capsule: () => EnCapsule;
+    cube: () => EnCube;
+    cylinder: () => EnCylinder;
+    plane: () => EnPlane;
+    quad: () => EnQuad;
+    sphere: () => EnSphere;
+    webview: () => EnWebview;
+    line: () => EnShapeLine;
+    masterPage: () => MasterPage;
+    addTrakingImage: (url: string) => void;
+}
