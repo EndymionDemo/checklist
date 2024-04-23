@@ -8,21 +8,29 @@ import { EnPlane } from '../entities/en-plane';
 import { EnQuad } from '../entities/en-quad';
 import { EnWebview } from '../entities/en-webview';
 import { EnShapeLine } from '../entities/en-shape-line';
-import { MasterPage } from './master-page';
 import { MessageIncoming } from './endymion-v2.types';
 export declare class En {
     private commInterface;
     private w;
     core: EndymionCore;
+    private win;
     private message;
     private actionResult;
     private trackImage;
+    private pageVisibility;
+    private connections;
+    private currentConnectionImageId;
     message$: import("rxjs").Observable<MessageIncoming>;
     actionResult$: import("rxjs").Observable<MessageIncoming>;
     trackImage$: import("rxjs").Observable<MessageIncoming>;
+    pageVisibility$: import("rxjs").Observable<boolean>;
     constructor(commInterface?: string, w?: Window);
     enableDebug: () => void;
     disableDebug: () => void;
+    playHaptic(): void;
+    connect: (url: string) => En;
+    toWebView: (webViewCreationFn: (imageId: number, state: boolean) => EnWebview) => number | string;
+    getWebView: (imageId: number) => EnWebview | null;
     asset: () => EnAsset;
     capsule: () => EnCapsule;
     cube: () => EnCube;
@@ -32,6 +40,5 @@ export declare class En {
     sphere: () => EnSphere;
     webview: () => EnWebview;
     line: () => EnShapeLine;
-    masterPage: () => MasterPage;
-    addTrakingImage: (url: string) => void;
+    addTrackingImage: (url: string, refWidth?: number) => number;
 }

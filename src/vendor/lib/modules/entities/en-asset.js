@@ -41,7 +41,7 @@ class EnAsset extends en_base_entity_1.BaseEntity {
             this.actions.push({
                 name: 'gltf-play-anim',
                 payload: {
-                    id: this.id,
+                    id: this.entity.id,
                     index: this.animationIndex
                 }
             });
@@ -55,7 +55,7 @@ class EnAsset extends en_base_entity_1.BaseEntity {
         this.actions.push({
             name: 'gltf-stop-anim',
             payload: {
-                id: this.id
+                id: this.entity.id
             }
         });
         this.apply();
@@ -67,7 +67,7 @@ class EnAsset extends en_base_entity_1.BaseEntity {
         this.actions.push({
             name: 'gltf-pause-anim',
             payload: {
-                id: this.id
+                id: this.entity.id
             }
         });
         this.apply();
@@ -79,15 +79,18 @@ class EnAsset extends en_base_entity_1.BaseEntity {
         url = url.includes('http')
             ? url
             : `${this.win.getCurrentProtocol()}//${this.win.getCurrentHost()}/${url}`;
-        this.entity.id = this.id;
+        this.entity.id = this.isCustomId ? this.customId : this.id;
         this.actions = [
-            { name: 'gltf-create', payload: { id: this.entity.id, url: url } },
             {
-                name: 'actor-set-transform', payload: {
+                name: 'gltf-create',
+                payload: {
                     id: this.entity.id,
-                    rotation: this.entity.rotation,
-                    position: this.entity.position,
-                    scale: this.entity.scale
+                    url: url,
+                    transform: {
+                        position: this.entity.position,
+                        rotation: this.entity.rotation,
+                        scale: this.entity.scale
+                    }
                 }
             }
         ];

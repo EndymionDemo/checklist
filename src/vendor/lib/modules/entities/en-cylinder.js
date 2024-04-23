@@ -13,7 +13,7 @@ class EnCylinder extends en_base_entity_1.BaseEntity {
         this.entity.primitive = this.type;
     }
     create() {
-        this.entity.id = this.id;
+        this.entity.id = this.isCustomId ? this.customId : this.id;
         this.actions = [
             {
                 name: 'primitive-create', payload: {

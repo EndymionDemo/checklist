@@ -4,6 +4,7 @@ exports.EndymionCore = void 0;
 const debug_1 = require("../utils/debug");
 class EndymionCoreV2 {
     messageStack = [];
+    apiVerisionInitExecuted = false;
     objectId = 0;
     defaultPosition = { x: 0, y: 0, z: 0 };
     defaultRotation = { x: 0, y: 0, z: 0 };
@@ -17,19 +18,17 @@ class EndymionCoreV2 {
         if (this.communicationInterface == undefined
             || this.communicationInterface === ''
             || this.communicationInterface === null) {
+            if (this.isDebugMode())
+                console.log('communication interface not ready');
             this.window.EnSpace = {
                 ...this.window.EnSpace,
                 environment: 'web-browser'
             };
             this.window.addEventListener('vuplexready', () => {
-                console.log('vuplexready');
+                if (this.isDebugMode())
+                    console.log('communication interface ready event received');
                 this.communicationInterface = this.window[commInterface];
-                this.messageStack.unshift({
-                    "name": "api-init",
-                    "payload": {
-                        "api": "2"
-                    }
-                });
+                this.initApiVersion();
                 this.messageStack.forEach((message) => {
                     this.communicationInterface.postMessage(message);
                 });
@@ -48,22 +47,20 @@ class EndymionCoreV2 {
                 this.messageStack.push(message);
             };
             this.communicationInterface.addEventListener = (message) => { };
-            return;
         }
-        this.window.EnSpace = {
-            ...this.window.EnSpace,
-            environment: 'web-view'
-        };
-        this.window.console.log = debug_1.enLog;
-        this.window.console.error = debug_1.enError;
-        this.window.alert = debug_1.enAlert;
-        this.window.onerror = debug_1.enOnWindowError;
-        this.communicationInterface.postMessage({
-            "name": "api-init",
-            "payload": {
-                "api": "2"
-            }
-        });
+        else {
+            if (this.isDebugMode())
+                console.log('communication interface already ready');
+            this.window.EnSpace = {
+                ...this.window.EnSpace,
+                environment: 'web-view'
+            };
+            this.window.console.log = debug_1.enLog;
+            this.window.console.error = debug_1.enError;
+            this.window.alert = debug_1.enAlert;
+            this.window.onerror = debug_1.enOnWindowError;
+            this.initApiVersion();
+        }
     }
     getObjectId = () => {
         this.window.EnSpace.objectId++;
@@ -82,7 +79,7 @@ class EndymionCoreV2 {
         this.window.EnSpace.debugMode = false;
     };
     isDebugMode = () => {
-        return this.window.EnSpace.debugMode;
+        return this.window.EnSpace?.debugMode || false;
     };
     sendMessage = (message) => {
         this.communicationInterface.postMessage(message);
@@ -129,6 +126,19 @@ class EndymionCoreV2 {
             payload: actPayload
         };
         return act;
+    };
+    initApiVersion = () => {
+        if (!this.apiVerisionInitExecuted) {
+            if (this.isDebugMode())
+                console.log('initApiVersion');
+            this.apiVerisionInitExecuted = true;
+            this.communicationInterface.postMessage({
+                name: "api-init",
+                payload: {
+                    api: "2"
+                }
+            });
+        }
     };
 }
 exports.EndymionCore = EndymionCoreV2;

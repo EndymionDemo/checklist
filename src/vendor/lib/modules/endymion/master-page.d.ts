@@ -16,5 +16,6 @@ export declare class MasterPage {
     constructor(en: En);
     addPage(name: string, url: string, placeholderUrl: string, pageTransform: Transform | null, placeholderTransform?: Transform | null, inherit_transform?: string | null): void;
     addPages(pages: Page[]): void;
+    addTrackingImage(imagePath: string): void;
     connect(): void;
 }

@@ -20,9 +20,9 @@ class BaseEntity {
     applyError = new rxjs_1.Subject();
     error = new rxjs_1.Subject();
     createdError = new rxjs_1.Subject();
-    setTargetableUpdated = new rxjs_1.Subject();
+    setAimableUpdated = new rxjs_1.Subject();
     message = new rxjs_1.Subject();
-    targetted = new rxjs_1.Subject();
+    aimed = new rxjs_1.Subject();
     clicked = new rxjs_1.Subject();
     webViewVisible = new rxjs_1.Subject();
     isClickable = new rxjs_1.Subject();
@@ -67,14 +67,14 @@ class BaseEntity {
     }
     clickable = false;
     active = true;
-    targetable = false;
+    aimable = false;
     playHaptic = false;
     updated$ = this.updated.asObservable();
     colorUpdated$ = this.colorUpdated.asObservable();
     positionUpdated$ = this.positionUpdated.asObservable();
     rotationUpdated$ = this.rotationUpdated.asObservable();
     scaleUpdated$ = this.scaleUpdated.asObservable();
-    setTargetableUpdated$ = this.setTargetableUpdated.asObservable();
+    setAimableUpdated$ = this.setAimableUpdated.asObservable();
     setActiveUpdated = new rxjs_1.Subject();
     setActiveUpdated$ = this.setActiveUpdated.asObservable();
     created$ = this.created.asObservable();
@@ -82,7 +82,7 @@ class BaseEntity {
     applyError$ = this.applyError.asObservable();
     createdError$ = this.createdError.asObservable();
     error$ = this.error.asObservable();
-    targetted$ = this.targetted.asObservable();
+    aimed$ = this.aimed.asObservable();
     clicked$ = this.clicked.asObservable();
     webViewVisible$ = this.webViewVisible.asObservable();
     isClickable$ = this.isClickable.asObservable();
@@ -114,7 +114,7 @@ class BaseEntity {
                             that.core.playHaptic();
                             that.hapticPlay.next(true);
                         }
-                        that.targetted.next({ name: name, type: 'message', payload: payload });
+                        that.aimed.next({ name: name, type: 'message', payload: payload });
                         break;
                     case 'actor-on-click':
                         if (that.playHaptic) {
@@ -195,7 +195,7 @@ class BaseEntity {
             throw new Error('[en-primitive][setPos] - y value is not valid');
         if (typeof z !== 'number')
             throw new Error('[en-primitive][setPos] - z value is not valid');
-        this.entity.position = { x: this.entity.position.x + x, y: this.entity.position.y + y, z: this.entity.position.z + z };
+        this.entity.position = { x: x, y: y, z: z };
         this.updated.next({ name: 'actor-add-transform', type: 'update', payload: { position: { x, y, z } } });
         this.positionUpdated.next(this.entity.position);
         this.actions.push({ name: 'actor-add-transform', payload: { id: this.entity.id.toString(), position: this.entity.position } });
@@ -211,13 +211,19 @@ class BaseEntity {
         return this;
     }
     addRot(x, y, z) {
-        this.entity.rotation = { x: this.entity.rotation.x + x, y: this.entity.rotation.y + y, z: this.entity.rotation.z + z };
+        this.entity.rotation = { x: x, y: y, z: z };
         this.updated.next({ name: 'actor-add-transform', type: 'update', payload: { rotation: { x, y, z } } });
         this.rotationUpdated.next(this.entity.rotation);
         this.actions.push({ name: 'actor-add-transform', payload: { id: this.entity.id.toString(), rotation: this.entity.rotation } });
         return this;
     }
     setScale(x, y, z) {
+        if (x == null || x == undefined)
+            throw new Error('[en-primitive][setScale] - x value is not valid');
+        if ((y == null || y == undefined) && (z == null || z == undefined)) {
+            y = x;
+            z = x;
+        }
         this.entity.scale = { x: x, y: y, z: z };
         this.updated.next({ name: 'actor-set-transform', type: 'update', payload: { scale: this.entity.scale } });
         this.scaleUpdated.next(this.entity.scale);
@@ -227,7 +233,13 @@ class BaseEntity {
         return this;
     }
     addScale(x, y, z) {
-        this.entity.scale = { x: this.entity.scale.x + x, y: this.entity.scale.y + y, z: this.entity.scale.z + z };
+        if (x == null || x == undefined)
+            throw new Error('[en-primitive][setScale] - x value is not valid');
+        if ((y == null || y == undefined) && (z == null || z == undefined)) {
+            y = x;
+            z = x;
+        }
+        this.entity.scale = { x: x, y: y, z: z };
         this.updated.next({ name: 'actor-add-transform', type: 'update', payload: { scale: { x, y, z } } });
         this.scaleUpdated.next(this.entity.scale);
         this.actions.push({ name: 'actor-add-transform', payload: { id: this.entity.id.toString(), scale: this.entity.scale } });
@@ -252,6 +264,9 @@ class BaseEntity {
             if ((0, color_utils_1.namedColor)().has(color.toUpperCase())) {
                 var hexColor = (0, color_utils_1.namedColor)().get(color.toUpperCase());
                 selectedColor = (0, color_utils_1.hexToRGB)(hexColor);
+            }
+            if (color === 'transparent') {
+                selectedColor = { r: 0, g: 0, b: 0, a: 0 };
             }
         }
         if (typeof color === 'object'
@@ -301,18 +316,18 @@ class BaseEntity {
         this.colorUpdated.next(this.color);
         return this;
     }
-    setTargetable(value, radius = 0.1) {
-        this.targetable = value;
+    setAimable(value, radius = 0.1) {
+        this.aimable = value;
         this.updated.next({ name: 'actor-set-aimable', type: 'update', payload: { enabled: value, radius: radius } });
-        this.setTargetableUpdated.next({ enabled: value, radius: radius });
-        this.actions.push({ name: 'actor-set-aimable', payload: { id: this.entity.id, enabled: this.targetable, radius: radius } });
+        this.setAimableUpdated.next({ enabled: value, radius: radius });
+        this.actions.push({ name: 'actor-set-aimable', payload: { id: this.entity.id, enabled: this.aimable, radius: radius } });
         return this;
     }
     setActive(value) {
         this.active = value;
-        this.updated.next({ name: 'actor-setactive', type: 'update', payload: { activated: value } });
+        this.updated.next({ name: 'actor-set-active', type: 'update', payload: { activated: value } });
         this.setActiveUpdated.next(value);
-        this.actions.push({ name: 'actor-setactive', payload: { id: this.entity.id, activated: this.active } });
+        this.actions.push({ api: 2, name: 'actor-set-active', payload: { id: this.entity.id, activated: this.active } });
         return this;
     }
     setClickable(value) {

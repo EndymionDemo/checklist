@@ -22,6 +22,9 @@ class MasterPage {
     addPages(pages) {
         this.pages = pages;
     }
+    addTrackingImage(imagePath) {
+        this.en.addTrackingImage(imagePath);
+    }
     connect() {
         this.pages.map(page => {
             let cube = this.en.cube();

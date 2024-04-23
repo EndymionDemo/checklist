@@ -22,9 +22,9 @@ export declare class BaseEntity {
     private applyError;
     private error;
     private createdError;
-    private setTargetableUpdated;
+    private setAimableUpdated;
     private message;
-    private targetted;
+    private aimed;
     private clicked;
     private webViewVisible;
     private isClickable;
@@ -38,11 +38,11 @@ export declare class BaseEntity {
     protected color: Color;
     protected core: EndymionCore;
     private _actions;
-    protected get actions(): Action[];
-    protected set actions(actions: Action[]);
+    protected get actions(): any[];
+    protected set actions(actions: any[]);
     protected clickable: boolean;
     protected active: boolean;
-    protected targetable: boolean;
+    protected aimable: boolean;
     protected playHaptic: boolean;
     updated$: import("rxjs").Observable<enEvent>;
     colorUpdated$: import("rxjs").Observable<Color>;
@@ -61,7 +61,7 @@ export declare class BaseEntity {
         y: number;
         z: number;
     }>;
-    setTargetableUpdated$: import("rxjs").Observable<{
+    setAimableUpdated$: import("rxjs").Observable<{
         enabled: boolean;
         radius: number;
     }>;
@@ -72,7 +72,7 @@ export declare class BaseEntity {
     applyError$: import("rxjs").Observable<any>;
     createdError$: import("rxjs").Observable<any>;
     error$: import("rxjs").Observable<any>;
-    targetted$: import("rxjs").Observable<IncomingMessage>;
+    aimed$: import("rxjs").Observable<IncomingMessage>;
     clicked$: import("rxjs").Observable<IncomingMessage>;
     webViewVisible$: import("rxjs").Observable<IncomingMessage>;
     isClickable$: import("rxjs").Observable<boolean>;
@@ -93,7 +93,7 @@ export declare class BaseEntity {
     addScale(x: number, y: number, z: number): BaseEntity;
     setColor(color: Color | string): BaseEntity;
     setOpacity(value: number): BaseEntity;
-    setTargetable(value: boolean, radius?: number): BaseEntity;
+    setAimable(value: boolean, radius?: number): BaseEntity;
     setActive(value: boolean): BaseEntity;
     setClickable(value: boolean): BaseEntity;
     setHapticFeedback(value: boolean): BaseEntity;

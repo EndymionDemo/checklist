@@ -8,6 +8,7 @@ class EnWebview extends en_base_entity_1.BaseEntity {
     type = 'webview';
     webViewParent;
     url = '';
+    webViewType = 'flat-fixed';
     constructor(commInterface = 'vuplex', w = window) {
         super(commInterface, w);
         this.commInterface = commInterface;
@@ -21,6 +22,9 @@ class EnWebview extends en_base_entity_1.BaseEntity {
         throw new Error("[en-webview][setOpacity] - Method not allowed on EnWebview");
     }
     setUrl(url) {
+        url = url.includes('http')
+            ? url
+            : `${this.win.getCurrentProtocol()}//${this.win.getCurrentHost()}/${url}`;
         this.url = url;
         return this;
     }
@@ -28,18 +32,27 @@ class EnWebview extends en_base_entity_1.BaseEntity {
         this.webViewParent = webViewParent;
         return this;
     }
+    setType(type) {
+        this.webViewType = type;
+        return this;
+    }
     create() {
         if (!this.url)
             throw new Error('[en-webview][create] - url is required');
-        this.entity.id = this.id;
+        this.entity.id = this.isCustomId ? this.customId : this.id;
         this.actions = [
-            { name: 'webview-create', payload: { id: this.entity.id, url: this.url, parent: this.webViewParent } },
             {
-                name: 'actor-set-transform', payload: {
+                name: 'webview-create',
+                payload: {
                     id: this.entity.id,
-                    rotation: this.entity.rotation,
-                    position: this.entity.position,
-                    scale: this.entity.scale
+                    type: this.webViewType,
+                    url: this.url,
+                    parent: this.webViewParent,
+                    transform: {
+                        rotation: this.entity.rotation,
+                        position: this.entity.position,
+                        scale: this.entity.scale
+                    }
                 }
             }
         ];

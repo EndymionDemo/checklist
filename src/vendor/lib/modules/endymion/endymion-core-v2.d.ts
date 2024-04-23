@@ -1,6 +1,7 @@
 import { Position, Rotation, Scale, Color, ActionName, Action } from './endymion-v2.types';
 declare class EndymionCoreV2 {
     private messageStack;
+    private apiVerisionInitExecuted;
     protected objectId: number;
     protected defaultPosition: Position;
     protected defaultRotation: Rotation;
@@ -22,5 +23,6 @@ declare class EndymionCoreV2 {
     destroyAll(): void;
     playHaptic: () => void;
     private createAction;
+    private initApiVersion;
 }
 export { EndymionCoreV2 as EndymionCore };

@@ -31,7 +31,7 @@ class EnShapeLine extends en_base_entity_1.BaseEntity {
         return this;
     }
     create() {
-        this.entity.id = this.id;
+        this.entity.id = this.isCustomId ? this.customId : this.id;
         this.actions = [
             {
                 name: 'shape-line-create', payload: {
