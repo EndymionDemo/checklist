@@ -10,7 +10,7 @@ declare class EndymionCoreV2 {
     communicationInterface: any;
     window: Window;
     constructor(commInterface?: string, w?: Window);
-    getObjectId: () => number;
+    generateObjectId: () => number;
     getEnvironment: () => string;
     getApiVersion: () => string;
     enableDebug: () => void;

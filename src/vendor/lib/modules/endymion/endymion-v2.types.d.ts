@@ -39,19 +39,11 @@ export type Entity = {
     position: Position;
     rotation: Rotation;
     scale: Scale;
-};
-export type EntityMap = {
-    id: number;
-    primitive: PrimitiveType;
-    position: Position;
-    rotation: Rotation;
-    scale: Scale;
     color: Color;
-    url?: string;
-    parent?: webViewParent;
-    actorActivated?: boolean;
-    target?: boolean;
-    radius?: number;
+    clickable: boolean;
+    active: boolean;
+    aimable: boolean;
+    playHaptic: boolean;
 };
 export interface Action {
     name: ActionName;

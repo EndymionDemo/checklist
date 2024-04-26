@@ -62,7 +62,7 @@ class EndymionCoreV2 {
             this.initApiVersion();
         }
     }
-    getObjectId = () => {
+    generateObjectId = () => {
         this.window.EnSpace.objectId++;
         return this.window.EnSpace.objectId;
     };

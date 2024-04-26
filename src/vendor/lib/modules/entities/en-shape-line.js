@@ -31,12 +31,12 @@ class EnShapeLine extends en_base_entity_1.BaseEntity {
         return this;
     }
     create() {
-        this.entity.id = this.isCustomId ? this.customId : this.id;
+        this.entity.id = this.isCustomId ? this.customId : this.core.generateObjectId();
         this.actions = [
             {
                 name: 'shape-line-create', payload: {
                     id: this.entity.id.toString(),
-                    color: this.color,
+                    color: this.entity.color,
                     thickness: this.thickness,
                     points: this.points,
                     transform: {
