@@ -28,6 +28,7 @@ export declare class BaseEntity {
     private aimed;
     private clicked;
     private webViewVisible;
+    private webViewMessage;
     private isClickable;
     private hapticPlay;
     private destroyed;
@@ -57,8 +58,8 @@ export declare class BaseEntity {
     get playHaptic(): boolean;
     protected core: EndymionCore;
     private _actions;
-    protected get actions(): any[];
-    protected set actions(actions: any[]);
+    protected get actions(): Action[];
+    protected set actions(actions: Action[]);
     updated$: import("rxjs").Observable<enEvent>;
     colorUpdated$: import("rxjs").Observable<Color>;
     opacityUpdated$: import("rxjs").Observable<number>;
@@ -91,6 +92,7 @@ export declare class BaseEntity {
     aimed$: import("rxjs").Observable<IncomingMessage>;
     clicked$: import("rxjs").Observable<IncomingMessage>;
     webViewVisible$: import("rxjs").Observable<IncomingMessage>;
+    webViewMessage$: import("rxjs").Observable<IncomingMessage>;
     isClickable$: import("rxjs").Observable<boolean>;
     hapticPlay$: import("rxjs").Observable<boolean>;
     destroyed$: import("rxjs").Observable<boolean>;

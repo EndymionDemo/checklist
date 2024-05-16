@@ -18,12 +18,14 @@ export declare class En {
     private actionResult;
     private trackImage;
     private pageVisibility;
+    private webViewMessage;
     private connections;
     private currentConnectionImageId;
     message$: import("rxjs").Observable<MessageIncoming>;
     actionResult$: import("rxjs").Observable<MessageIncoming>;
     trackImage$: import("rxjs").Observable<MessageIncoming>;
     pageVisibility$: import("rxjs").Observable<boolean>;
+    webViewMessage$: import("rxjs").Observable<MessageIncoming>;
     constructor(commInterface?: string, w?: Window);
     enableDebug: () => void;
     disableDebug: () => void;

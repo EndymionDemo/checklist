@@ -22,6 +22,7 @@ class En {
     actionResult = new rxjs_1.Subject();
     trackImage = new rxjs_1.Subject();
     pageVisibility = new rxjs_1.Subject();
+    webViewMessage = new rxjs_1.Subject();
     connections = new Map();
     currentConnectionImageId = -1;
     message$ = this.message.asObservable().pipe((0, rxjs_1.tap)((message) => {
@@ -32,6 +33,7 @@ class En {
     actionResult$ = this.actionResult.asObservable();
     trackImage$ = this.trackImage.asObservable();
     pageVisibility$ = this.pageVisibility.asObservable();
+    webViewMessage$ = this.webViewMessage.asObservable();
     constructor(commInterface = 'vuplex', w = window) {
         this.commInterface = commInterface;
         this.w = w;
@@ -54,6 +56,9 @@ class En {
                     break;
                 case 'webview-visible':
                     that.pageVisibility.next(payload.state);
+                    break;
+                case 'webview-on-message':
+                    that.webViewMessage.next({ name: name, type: 'message', payload: payload });
                     break;
             }
             that.message.next({ name: name, type: 'message', payload: payload });

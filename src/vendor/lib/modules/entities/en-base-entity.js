@@ -26,6 +26,7 @@ class BaseEntity {
     aimed = new rxjs_1.Subject();
     clicked = new rxjs_1.Subject();
     webViewVisible = new rxjs_1.Subject();
+    webViewMessage = new rxjs_1.Subject();
     isClickable = new rxjs_1.Subject();
     hapticPlay = new rxjs_1.Subject();
     destroyed = new rxjs_1.Subject();
@@ -125,6 +126,7 @@ class BaseEntity {
     aimed$ = this.aimed.asObservable();
     clicked$ = this.clicked.asObservable();
     webViewVisible$ = this.webViewVisible.asObservable();
+    webViewMessage$ = this.webViewMessage.asObservable();
     isClickable$ = this.isClickable.asObservable();
     hapticPlay$ = this.hapticPlay.asObservable();
     destroyed$ = this.destroyed.asObservable();
@@ -175,6 +177,9 @@ class BaseEntity {
                         break;
                     case 'webview-visible':
                         that.webViewVisible.next({ name: name, type: 'message', payload: payload });
+                        break;
+                    case 'webview-on-message':
+                        that.webViewMessage.next({ name: name, type: 'message', payload: payload });
                         break;
                 }
                 that.message.next({ name: name, type: 'message', payload: payload });
@@ -294,10 +299,6 @@ class BaseEntity {
     setScale(x, y, z) {
         if (typeof x !== 'number')
             throw new Error('[en-primitive][setScale] - x value is not valid');
-        if (typeof y !== 'number')
-            throw new Error('[en-primitive][setScale] - y value is not valid');
-        if (typeof z !== 'number')
-            throw new Error('[en-primitive][setScale] - z value is not valid');
         if (x == null || x == undefined)
             throw new Error('[en-primitive][setScale] - x value is not valid');
         if ((y == null || y == undefined) && (z == null || z == undefined)) {
@@ -415,7 +416,7 @@ class BaseEntity {
         this.entity.active = value;
         this.updated.next({ name: 'actor-set-active', type: 'update', payload: { activated: value } });
         this.setActiveUpdated.next(value);
-        this.actions.push({ api: 2, name: 'actor-set-active', payload: { id: this.entity.id, activated: this.entity.active } });
+        this.actions.push({ name: 'actor-set-active', payload: { id: this.entity.id, activated: this.entity.active } });
         return this;
     }
     setClickable(value) {

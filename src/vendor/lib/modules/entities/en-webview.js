@@ -36,6 +36,33 @@ class EnWebview extends en_base_entity_1.BaseEntity {
         this.webViewType = type;
         return this;
     }
+    setOrientation(orientation) {
+        if (orientation == null)
+            throw new Error('[en-webview][sendMessage] - orientation is required');
+        let action = {
+            name: 'webview-set-orientation',
+            payload: {
+                id: this.entity.id,
+                mode: orientation
+            }
+        };
+        this.actions.push(action);
+        return this;
+    }
+    sendMessage(destinationId, message) {
+        if (destinationId < 0)
+            throw new Error('[en-webview][sendMessage] - destination webview id is required');
+        if (message == '' || message == null)
+            throw new Error('[en-webview][sendMessage] - message is required');
+        let action = {
+            name: 'webview-send-message',
+            payload: {
+                id: destinationId,
+                message: message
+            }
+        };
+        this.actions.push(action);
+    }
     create() {
         if (!this.url)
             throw new Error('[en-webview][create] - url is required');

@@ -32,7 +32,7 @@ export type Color = {
     b: number;
     a: number;
 };
-export type ActionName = 'api-multi-action' | 'actor-add-transform' | 'actor-set-transform' | 'actor-destroy' | 'actor-destroy-all' | 'actor-set-active' | 'actor-set-aimable' | 'actor-set-clickable' | 'device-play-haptic' | 'gltf-create' | 'gltf-play-anim' | 'gltf-pause-anim' | 'gltf-stop-anim' | 'primitive-create' | 'primitive-set-color' | 'shape-line-create' | 'webview-create' | 'tracker-add-image';
+export type ActionName = 'api-multi-action' | 'actor-add-transform' | 'actor-set-transform' | 'actor-destroy' | 'actor-destroy-all' | 'actor-set-active' | 'actor-set-aimable' | 'actor-set-clickable' | 'device-play-haptic' | 'gltf-create' | 'gltf-play-anim' | 'gltf-pause-anim' | 'gltf-stop-anim' | 'primitive-create' | 'primitive-set-color' | 'shape-line-create' | 'webview-create' | 'tracker-add-image' | 'webview-set-orientation' | 'webview-send-message';
 export type Entity = {
     id: number;
     primitive: PrimitiveType;
@@ -53,6 +53,7 @@ export type message = {
     origin: string;
     data: any;
 };
+export type webviewOrientation = 'device' | 'landscape' | 'landscape-reversed' | 'portrait' | 'portrait-reversed';
 export type webviewParentTransform = 'p' | 'r' | 's' | 'pr' | 'ps' | 'rs' | 'prs';
 export type webViewParent = {
     id: string;
@@ -68,9 +69,10 @@ export type actorSetActivePayload = {
     id: string;
     activated: boolean;
 };
-export type MessageName = 'actor-on-aim' | 'actor-on-click' | 'webview-visible' | 'api-on-result' | 'tracker-on-image';
+export type MessageName = 'actor-on-aim' | 'actor-on-click' | 'webview-visible' | 'api-on-result' | 'tracker-on-image' | 'webview-on-message';
 export type MessagePayload = {
     id: string;
+    url?: string;
     state?: string | boolean;
 };
 export type MessageIncoming = {
