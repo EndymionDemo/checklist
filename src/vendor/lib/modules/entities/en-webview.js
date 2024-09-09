@@ -62,6 +62,18 @@ class EnWebview extends en_base_entity_1.BaseEntity {
             }
         };
         this.actions.push(action);
+        return this;
+    }
+    setClickPolicy(type) {
+        let action = {
+            name: 'webview-send-message',
+            payload: {
+                id: this.entity.id,
+                rule: type
+            }
+        };
+        this.actions.push(action);
+        return this;
     }
     create() {
         if (!this.url)

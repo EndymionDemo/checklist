@@ -11,7 +11,9 @@ export declare class BaseEntity {
     protected commInterface: string;
     protected w: Window;
     protected win: Win;
-    private isCreated;
+    private _isCreated;
+    get isCreated(): boolean;
+    protected set isCreated(value: boolean);
     private updated;
     private colorUpdated;
     private opacityUpdated;

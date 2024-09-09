@@ -13,6 +13,8 @@ declare class EndymionCoreV2 {
     generateObjectId: () => number;
     getEnvironment: () => string;
     getApiVersion: () => string;
+    setApiVersion: (value: number) => void;
+    initVersion: () => void;
     enableDebug: () => void;
     disableDebug: () => void;
     isDebugMode: () => boolean;

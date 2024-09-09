@@ -72,6 +72,17 @@ class EndymionCoreV2 {
     getApiVersion = () => {
         return this.window.EnSpace.apiVersion;
     };
+    setApiVersion = (value) => {
+        this.window.EnSpace.apiVersion = value;
+    };
+    initVersion = () => {
+        this.communicationInterface.postMessage({
+            name: "api-init",
+            payload: {
+                api: this.getApiVersion()
+            }
+        });
+    };
     enableDebug = () => {
         this.window.EnSpace.debugMode = true;
     };
@@ -135,7 +146,7 @@ class EndymionCoreV2 {
             this.communicationInterface.postMessage({
                 name: "api-init",
                 payload: {
-                    api: "2"
+                    api: this.getApiVersion()
                 }
             });
         }

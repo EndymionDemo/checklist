@@ -9,7 +9,13 @@ class BaseEntity {
     commInterface;
     w;
     win;
-    isCreated = false;
+    _isCreated = false;
+    get isCreated() {
+        return this._isCreated;
+    }
+    set isCreated(value) {
+        this._isCreated = value;
+    }
     updated = new rxjs_1.Subject();
     colorUpdated = new rxjs_1.Subject();
     opacityUpdated = new rxjs_1.Subject();
@@ -215,8 +221,7 @@ class BaseEntity {
     }
     destroy() {
         try {
-            this.actions.push({ name: 'actor-destroy', payload: { id: this.entity.id } });
-            this.core.sendActions(this.actions);
+            this.core.sendActions([{ name: 'actor-destroy', payload: { id: this.entity.id } }]);
             this.destroyed.next(true);
         }
         catch (e) {

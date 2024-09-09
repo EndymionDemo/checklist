@@ -7,6 +7,7 @@ class EnAsset extends en_base_entity_1.BaseEntity {
     commInterface;
     w;
     type = 'gltf';
+    url = '';
     animationIndex = -1;
     animationUpdated = new rxjs_1.Subject();
     animationPlaying = new rxjs_1.Subject();
@@ -79,6 +80,11 @@ class EnAsset extends en_base_entity_1.BaseEntity {
         url = url.includes('http')
             ? url
             : `${this.win.getCurrentProtocol()}//${this.win.getCurrentHost()}/${url}`;
+        if (this.isCreated && this.url !== url) {
+            this.destroy();
+            this.setId(this.entity.id);
+            this.isCreated = false;
+        }
         this.entity.id = this.isCustomId ? this.customId : this.core.generateObjectId();
         this.actions = [
             {
@@ -95,6 +101,9 @@ class EnAsset extends en_base_entity_1.BaseEntity {
             }
         ];
         super.create();
+        if (this.isCreated && this.url !== url) {
+            this.isCustomId = false;
+        }
         return this;
     }
 }

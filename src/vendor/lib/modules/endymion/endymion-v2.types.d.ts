@@ -32,7 +32,7 @@ export type Color = {
     b: number;
     a: number;
 };
-export type ActionName = 'api-multi-action' | 'actor-add-transform' | 'actor-set-transform' | 'actor-destroy' | 'actor-destroy-all' | 'actor-set-active' | 'actor-set-aimable' | 'actor-set-clickable' | 'device-play-haptic' | 'gltf-create' | 'gltf-play-anim' | 'gltf-pause-anim' | 'gltf-stop-anim' | 'primitive-create' | 'primitive-set-color' | 'shape-line-create' | 'webview-create' | 'tracker-add-image' | 'webview-set-orientation' | 'webview-send-message';
+export type ActionName = 'api-multi-action' | 'actor-add-transform' | 'actor-set-transform' | 'actor-destroy' | 'actor-destroy-all' | 'actor-set-active' | 'actor-set-aimable' | 'actor-set-clickable' | 'device-play-haptic' | 'gltf-create' | 'gltf-play-anim' | 'gltf-pause-anim' | 'gltf-stop-anim' | 'primitive-create' | 'primitive-set-color' | 'shape-line-create' | 'webview-create' | 'imgtracker-add-image' | 'webview-set-orientation' | 'webview-send-message' | 'qrctracker-init' | 'qrctracker-reset' | 'qrctracker-run';
 export type Entity = {
     id: number;
     primitive: PrimitiveType;
@@ -69,7 +69,7 @@ export type actorSetActivePayload = {
     id: string;
     activated: boolean;
 };
-export type MessageName = 'actor-on-aim' | 'actor-on-click' | 'webview-visible' | 'api-on-result' | 'tracker-on-image' | 'webview-on-message';
+export type MessageName = 'actor-on-aim' | 'actor-on-click' | 'webview-visible' | 'api-on-result' | 'imgtracker-on-image' | 'webview-on-message';
 export type MessagePayload = {
     id: string;
     url?: string;
@@ -79,4 +79,11 @@ export type MessageIncoming = {
     name: MessageName;
     type: string;
     payload: MessagePayload;
+};
+export type PolicyType = 'block' | 'pass' | 'pass_transparent';
+export type TrackInit = {
+    trackMode: "cv" | "anchor";
+    maxActives: number;
+    maxCached: number;
+    refSize: number;
 };

@@ -51,7 +51,7 @@ class En {
                 case 'api-on-result':
                     that.actionResult.next({ name: name, type: 'message', payload: payload });
                     break;
-                case 'tracker-on-image':
+                case 'imgtracker-on-image':
                     that.trackImage.next({ name: name, type: 'message', payload: payload });
                     break;
                 case 'webview-visible':
@@ -73,23 +73,6 @@ class En {
     playHaptic() {
         this.core.playHaptic();
     }
-    connect = (url) => {
-        if (url === undefined || url === null || url === '')
-            throw new Error('[EN][connect] - url is required');
-        this.currentConnectionImageId = this.addTrackingImage(url);
-        return this;
-    };
-    toWebView = (webViewCreationFn) => {
-        var that = this;
-        this.trackImage$.subscribe((message) => {
-            let webView = webViewCreationFn(that.currentConnectionImageId, message.payload.state);
-            this.connections.set(that.currentConnectionImageId, webView);
-        });
-        return that.currentConnectionImageId;
-    };
-    getWebView = (imageId) => {
-        return this.connections.get(imageId);
-    };
     asset = () => new en_asset_1.EnAsset(this.commInterface, this.w);
     capsule = () => new en_capsule_1.EnCapsule(this.commInterface, this.w);
     cube = () => new en_cube_1.EnCube(this.commInterface, this.w);
@@ -111,8 +94,28 @@ class En {
             url: url,
             refWidth: refWidth
         };
-        this.core.sendActions([{ name: 'tracker-add-image', payload: payload }]);
+        this.core.sendActions([{ name: 'imgtracker-add-image', payload: payload }]);
         return id;
+    };
+    qrcode = {
+        init: (trackMode, maxActives = 1, maxCached = 10, refSize = 0.1) => {
+            let payload = {
+                trackMode: trackMode,
+                maxActives: maxActives,
+                maxCached: maxCached,
+                refSize: refSize
+            };
+            this.core.sendActions([{ name: 'qrctracker-init', payload: payload }]);
+        },
+        reset: () => {
+            this.core.sendActions([{ name: "qrctracker-reset", payload: {} }]);
+        },
+        run: () => {
+            this.core.sendActions([{ name: "qrctracker-run", payload: { state: true } }]);
+        },
+        stop: () => {
+            this.core.sendActions([{ name: "qrctracker-run", payload: { state: false } }]);
+        }
     };
 }
 exports.En = En;

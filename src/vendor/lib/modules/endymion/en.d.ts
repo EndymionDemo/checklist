@@ -30,9 +30,6 @@ export declare class En {
     enableDebug: () => void;
     disableDebug: () => void;
     playHaptic(): void;
-    connect: (url: string) => En;
-    toWebView: (webViewCreationFn: (imageId: number, state: boolean) => EnWebview) => number | string;
-    getWebView: (imageId: number) => EnWebview | null;
     asset: () => EnAsset;
     capsule: () => EnCapsule;
     cube: () => EnCube;
@@ -43,4 +40,10 @@ export declare class En {
     webview: () => EnWebview;
     line: () => EnShapeLine;
     addTrackingImage: (url: string, refWidth?: number) => number;
+    qrcode: {
+        init: (trackMode: 'cv' | 'anchor', maxActives?: number, maxCached?: number, refSize?: number) => void;
+        reset: () => void;
+        run: () => void;
+        stop: () => void;
+    };
 }

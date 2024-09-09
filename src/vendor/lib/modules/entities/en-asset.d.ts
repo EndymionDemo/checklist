@@ -4,6 +4,7 @@ export declare class EnAsset extends BaseEntity {
     protected commInterface: string;
     protected w: Window;
     type: PrimitiveType;
+    private url;
     private animationIndex;
     private animationUpdated;
     private animationPlaying;

@@ -1,4 +1,4 @@
-import { Color, PrimitiveType, webViewParent as WebViewParent, webViewType, webviewOrientation } from "../endymion/endymion-v2.types";
+import { Color, PolicyType, PrimitiveType, webViewParent as WebViewParent, webViewType, webviewOrientation } from "../endymion/endymion-v2.types";
 import { BaseEntity } from "./en-base-entity";
 export declare class EnWebview extends BaseEntity {
     protected commInterface: string;
@@ -14,6 +14,7 @@ export declare class EnWebview extends BaseEntity {
     setParent(webViewParent: WebViewParent): EnWebview;
     setType(type: webViewType): EnWebview;
     setOrientation(orientation: webviewOrientation): EnWebview;
-    sendMessage(destinationId: number, message: string): void;
+    sendMessage(destinationId: number, message: string): this;
+    setClickPolicy(type: PolicyType): this;
     create(): EnWebview;
 }
