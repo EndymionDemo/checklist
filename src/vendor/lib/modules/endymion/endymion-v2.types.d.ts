@@ -32,7 +32,7 @@ export type Color = {
     b: number;
     a: number;
 };
-export type ActionName = 'api-multi-action' | 'actor-add-transform' | 'actor-set-transform' | 'actor-destroy' | 'actor-destroy-all' | 'actor-set-active' | 'actor-set-aimable' | 'actor-set-clickable' | 'device-play-haptic' | 'gltf-create' | 'gltf-play-anim' | 'gltf-pause-anim' | 'gltf-stop-anim' | 'primitive-create' | 'primitive-set-color' | 'shape-line-create' | 'webview-create' | 'imgtracker-add-image' | 'webview-set-orientation' | 'webview-send-message' | 'qrctracker-init' | 'qrctracker-reset' | 'qrctracker-run';
+export type ActionName = 'api-multi-action' | 'actor-add-transform' | 'actor-set-transform' | 'actor-destroy' | 'actor-destroy-all' | 'actor-set-active' | 'actor-set-aimable' | 'actor-set-clickable' | 'device-play-haptic' | 'gltf-create' | 'gltf-play-anim' | 'gltf-pause-anim' | 'gltf-stop-anim' | 'primitive-create' | 'primitive-set-color' | 'shape-line-create' | 'webview-create' | 'imgtracker-add-image' | 'imgtracker-init' | 'imgtracker-reset' | 'webview-set-orientation' | 'webview-send-message' | 'qrctracker-init' | 'qrctracker-reset' | 'qrctracker-run';
 export type Entity = {
     id: number;
     primitive: PrimitiveType;

@@ -4,7 +4,7 @@ exports.EndymionCore = void 0;
 const debug_1 = require("../utils/debug");
 class EndymionCoreV2 {
     messageStack = [];
-    apiVerisionInitExecuted = false;
+    apiVersionInitExecuted = false;
     objectId = 0;
     defaultPosition = { x: 0, y: 0, z: 0 };
     defaultRotation = { x: 0, y: 0, z: 0 };
@@ -18,15 +18,11 @@ class EndymionCoreV2 {
         if (this.communicationInterface == undefined
             || this.communicationInterface === ''
             || this.communicationInterface === null) {
-            if (this.isDebugMode())
-                console.log('communication interface not ready');
             this.window.EnSpace = {
                 ...this.window.EnSpace,
                 environment: 'web-browser'
             };
             this.window.addEventListener('vuplexready', () => {
-                if (this.isDebugMode())
-                    console.log('communication interface ready event received');
                 this.communicationInterface = this.window[commInterface];
                 this.initApiVersion();
                 this.messageStack.forEach((message) => {
@@ -49,8 +45,6 @@ class EndymionCoreV2 {
             this.communicationInterface.addEventListener = (message) => { };
         }
         else {
-            if (this.isDebugMode())
-                console.log('communication interface already ready');
             this.window.EnSpace = {
                 ...this.window.EnSpace,
                 environment: 'web-view'
@@ -139,17 +133,12 @@ class EndymionCoreV2 {
         return act;
     };
     initApiVersion = () => {
-        if (!this.apiVerisionInitExecuted) {
-            if (this.isDebugMode())
-                console.log('initApiVersion');
-            this.apiVerisionInitExecuted = true;
-            this.communicationInterface.postMessage({
-                name: "api-init",
-                payload: {
-                    api: this.getApiVersion()
-                }
-            });
-        }
+        this.communicationInterface.postMessage({
+            name: "api-init",
+            payload: {
+                api: "3"
+            }
+        });
     };
 }
 exports.EndymionCore = EndymionCoreV2;

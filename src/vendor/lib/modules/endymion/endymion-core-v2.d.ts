@@ -1,7 +1,7 @@
 import { Position, Rotation, Scale, Color, ActionName, Action } from './endymion-v2.types';
 declare class EndymionCoreV2 {
     private messageStack;
-    private apiVerisionInitExecuted;
+    private apiVersionInitExecuted;
     protected objectId: number;
     protected defaultPosition: Position;
     protected defaultRotation: Rotation;

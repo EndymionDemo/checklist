@@ -40,6 +40,11 @@ export declare class En {
     webview: () => EnWebview;
     line: () => EnShapeLine;
     addTrackingImage: (url: string, refWidth?: number) => number;
+    trackingImage: {
+        init: () => void;
+        add: (url: string, refWidth?: number) => number;
+        reset: () => void;
+    };
     qrcode: {
         init: (trackMode: 'cv' | 'anchor', maxActives?: number, maxCached?: number, refSize?: number) => void;
         reset: () => void;

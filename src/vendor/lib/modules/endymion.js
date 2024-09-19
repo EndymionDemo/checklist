@@ -13,6 +13,6 @@ window.EnSpace = {
     objectId: 0,
     environment: 'web-browser',
     debugMode: false,
-    version: '2.5.9',
+    version: '2.6.0',
     apiVersion: '3'
 };

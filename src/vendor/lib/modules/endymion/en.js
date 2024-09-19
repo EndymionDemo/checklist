@@ -97,6 +97,29 @@ class En {
         this.core.sendActions([{ name: 'imgtracker-add-image', payload: payload }]);
         return id;
     };
+    trackingImage = {
+        init: () => {
+            this.core.sendActions([{ name: 'imgtracker-init', payload: {} }]);
+        },
+        add: (url, refWidth = 0.05) => {
+            if (url === undefined || url === null || url === '')
+                throw new Error('[EN][addTrackingImage] - url is required');
+            let id = this.core.generateObjectId();
+            url = url.includes('http')
+                ? url
+                : `${this.win.getCurrentProtocol()}//${this.win.getCurrentHost()}/${url}`;
+            let payload = {
+                id: id,
+                url: url,
+                refWidth: refWidth
+            };
+            this.core.sendActions([{ name: 'imgtracker-add-image', payload: payload }]);
+            return id;
+        },
+        reset: () => {
+            this.core.sendActions([{ name: 'imgtracker-reset', payload: {} }]);
+        }
+    };
     qrcode = {
         init: (trackMode, maxActives = 1, maxCached = 10, refSize = 0.1) => {
             let payload = {
